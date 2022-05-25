@@ -65,21 +65,21 @@ function Login() {
   return (
     <>
       <h2>Formulario de Login</h2>
-      <form onSubmit={handlerSubmit}>
-        <label>
+      <form onSubmit={handlerSubmit} className="form-control w-25">
+        <label className="w-100">
           <span>Email: </span>
           <br />
-          <input type="text" name="email" placeholder="email" />
+          <input type="text" name="email" placeholder="email" className="form-control"/>
         </label>
         <br />
-        <label>
+        <label className="w-100">
           <span>Password: </span>
           <br />
-          <input type="password" name="password" placeholder="password" />
+          <input type="password" name="password" placeholder="password" className="form-control" />
         </label>
         <br />
-        {/* <br /> */}
-        <button type="submit">Ingresar</button>
+        <br />
+        <button type="submit" className='btn btn-success w-100'>Ingresar</button>
       </form>
     </>
   );
