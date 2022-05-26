@@ -1,15 +1,20 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { Navigate, Link } from 'react-router-dom'
+//14db4c983f9fab372331aeefe3a4855b esto es la api key de mi app
+// https://api.themoviedb.org/3/movie/550?api_key=14db4c983f9fab372331aeefe3a4855b solicitud
 
+// https://api.themoviedb.org/3/discover/movie?api_key=14db4c983f9fab372331aeefe3a4855b&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate
 const List = () => {
     // const navigate = useNavigate()
+    const token = localStorage.getItem('token')
+    // console.log(token)        
+    if (token === null) {
+        console.log('es null')
+        return <Navigate to='/' replace />
+        // navigate("../List/List", { replace: true });
+    }      
     useEffect(() => {
-        const token = localStorage.getItem('token')
-        console.log(token)        
-        if (token === null) {
-            console.log('es null')
-            return <Navigate to='/' replace />
-        }      
+        const endPoint = 'https://api.themoviedb.org/3/discover/movie?api_key=14db4c983f9fab372331aeefe3a4855b&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate'
     }, [])   
 
     return (

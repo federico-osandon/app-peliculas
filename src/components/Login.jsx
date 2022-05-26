@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import swAlert from '@sweetalert/with-react'
 
@@ -61,6 +61,11 @@ function Login() {
         })
         .catch((err) => console.log(err.message));
   };
+
+  const token = localStorage.getItem('token')  
+  if (token) {      
+      return <Navigate to='/list' replace />
+  }  
 
   return (
     <>
