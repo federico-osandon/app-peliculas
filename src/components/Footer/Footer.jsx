@@ -3,13 +3,13 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer>
-        <nav>
+        {/* <nav>
             <ul>
                 <li><a href="https://www.instagram.com" rel='noopener noreferrer'>Insatgram</a></li>
                 <li><a href="https://www.Facebook.com" rel='noopener noreferrer'>Facebook</a></li>
                 <li><a href="https://www.instagram.com" rel='noopener noreferrer'></a></li>
             </ul>
-        </nav>
+        </nav> */}
         <p>@ Copyright Películas</p>
     </footer>
   )

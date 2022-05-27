@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MovieDetail from './components/MovieDetail/MovieDetail';
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={ <Login /> } />                
                     <Route path="/list" element={ <List /> } />    
+                    <Route path="/detail" element={ <MovieDetail /> } />    
                     {/* <Route path="/contacto" element={ <List /> } />     */}
                     <Route path="/*" element={ <Navigate to="/" replace /> } />    
                 </Routes>

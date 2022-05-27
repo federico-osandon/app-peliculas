@@ -56,13 +56,13 @@ function Login() {
                 </div>
             )
             const { token } = resp.data 
-            localStorage.setItem('token', token)
+            sessionStorage.setItem('token', token)
             navigate('/list', {replace: true})
         })
         .catch((err) => console.log(err.message));
   };
 
-  const token = localStorage.getItem('token')  
+  const token = sessionStorage.getItem('token')  
   if (token) {      
       return <Navigate to='/list' replace />
   }  
