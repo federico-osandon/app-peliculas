@@ -1,10 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Buscador from '../Buscador/Buscador'
 
 const Header = () => {
+    // console.log(cambiarCondicion)
   return (
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark">
+        <nav class="navbar navbar-expand-lg bg-dark" style={{ color: 'white' }}>
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +24,9 @@ const Header = () => {
                 </ul>
                 
                 </div>
+            <Buscador 
+                //cambiarCondicion={cambiarCondicion} 
+            />
             </div>
         </nav>
     </header>

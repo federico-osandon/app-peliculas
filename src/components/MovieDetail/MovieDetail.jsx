@@ -1,9 +1,12 @@
-import { useEffect } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
+import swAlert from '@sweetalert/with-react'
 
 import './MovieDetail.css'
 
 const MovieDetail = () => {    
+    const [movieDetail, setMovieDetail] = useState(null)
     const token = sessionStorage.getItem('token')
     
     if (token === null) {        
@@ -15,32 +18,47 @@ const MovieDetail = () => {
     let movieId = query.get('movieId')
 
     useEffect(() => {
-        // https://api.themoviedb.org/3/movie/${movieId}?api_key=<<api_key>>&language=es-ES
-        console.log(movieId)
+        const endPoint = `https://api.themoviedb.org/3/movie/${movieId}?api_key=14db4c983f9fab372331aeefe3a4855b&language=es-ES`
+        axios.get(endPoint)       
+        .then(results => {
+            let moviData = results.data
+            setMovieDetail(moviData)
+        })
+        .catch(err => {
+            console.log(err)
+            swAlert(<h2>Hubo Errores. Intenta mas tarde. </h2>)
+        })
     }, [movieId])
-    
+
+
+    console.log(movieDetail)    
 
     return (
-        <div className="row grande">
-            <h5>Título: Falso</h5>
-            <div className="col-4">
-                Imágen 
-            </div>
-            <div className="col-8">                
-                <h5>Fecha de Estreno: </h5>
-                <h5>Reseña: </h5>
-                <p>lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet,
-                </p>
-                <h5>Géneros: </h5>
-                <ul>
-                    <li>Genero1</li>
-                    <li>Genero2</li>
-                    <li>Genero3</li>
-                    <li>Genero4</li>
-                    <li>Genero5</li>
-                </ul>
-            </div>
-        </div>
+        movieDetail ? 
+            <>
+                <h5 className="mt-3">Título: { movieDetail.title }</h5>
+                <div className="row grande">
+                    <div className="col-4">
+                        <img src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`} className="w-100" /> 
+                    </div>
+                    <div className="col-8">                
+                        <h5> Fecha de Estreno: { movieDetail.release_date }</h5>
+                        <h5> Reseña: </h5>
+                        <p>{ movieDetail.overview }</p>
+                        <h5> Rating: { movieDetail.vote_average }</h5>
+                        <h5> Géneros: </h5>
+                        <ul>
+                            { movieDetail.genres.map(genre => <li key={genre.id}>{ genre.name }</li>) }                            
+                        </ul>
+                    </div>
+                </div>
+            </>
+            : 
+            <center>
+                <h2>Cargando...</h2>
+            </center>
+        
+        
     )
 }
 
