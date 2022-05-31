@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, Navigate, useParams } from "react-router-dom"
 import swAlert from '@sweetalert/with-react'
 
 const Resultados = () => { 
@@ -9,6 +9,11 @@ const Resultados = () => {
     const { keyword } = useParams()
     // let query = new URLSearchParams(window.location.search)     
     // let keyword = query.get('keyword')
+    const token = sessionStorage.getItem('token')
+    if (token === null) {
+        console.log('es null')
+        return <Navigate to='/' replace />        
+    } 
     
     useEffect(() => {
         let endPoint = `https://api.themoviedb.org/3/search/movie?api_key=14db4c983f9fab372331aeefe3a4855b&language=es-ES&page=1&include_adult=false&query=${keyword}`
@@ -24,10 +29,8 @@ const Resultados = () => {
             console.error(err)
             swAlert(<h2>Hubo Errores. Intenta mas tarde. </h2>)
         })
-    }, [keyword])
+    }, [keyword])    
     
-    console.log(moviesResults)
-
     return (
         <>
             <h2>Buscate: <em>{ keyword }</em></h2>
